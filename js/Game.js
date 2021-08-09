@@ -54,22 +54,23 @@ class Game{
             
             players[index -1].x = x;
             players[index - 1].y = y;
+            p1Score = allPlayers.player1.score;
+            p2Score = allPlayers.player2.score;
 
             if(index === player.index){   
                 fill("black");
                 textSize(25);
                 text(allPlayers[plr].name ,x-25,y+25); 
+                
             }
            
             // Add code to diplay the scores of both 
             // the players on the screen
             
-        p1Score = allPlayers.player1.score;
-        p2Score = allPlayers.player2.score;
         fill("white");
         textSize(30);
-        text('Player1 :' + p1Score, 10, 40);
-        text('Player2 :' + p2Score, 10, 80);
+        text(allPlayers.player1.name + ":" + p1Score, 10, 40);
+        text(allPlayers.player2.name + ":" + p2Score, 10, 80);
         console.log(p1Score);
         console.log(p2Score);
 
@@ -115,15 +116,15 @@ class Game{
 
         if(player.index !== null){
             for(var i = 0 ; i<bombGroup.length;i++){
-                if(bombGroup.get(i).isTouching(players)){
-                    bombGroup.get(i).destroy();
+                if(bombGroup[i].isTouching(players)){
+                    bombGroup[i].destroy();
                     player.score = player.score - 1;
                     player.update();                
                 }
             }
             for(var i = 0 ; i<fruitGroup.length;i++){
-                if(fruitGroup.get(i).isTouching(players)){
-                    fruitGroup.get(i).destroy();
+                if(fruitGroup[i].isTouching(players)){
+                    fruitGroup[i].destroy();
                     player.score = player.score + 1;
                     player.update(); 
                 }
@@ -144,14 +145,14 @@ class Game{
     end(){
         if(player.score < 0){
         fill("white");
-        textSize(50);
-        text('Game Over', 50, 150);
+        textSize(100);
+        text('Game Over', 250, 250);
         }
 
         if(player.score === 5){
             fill("white");
-            textSize(50);
-            text('You Won', 50, 150);
+            textSize(100);
+            text('You Won', 250, 250);
         }
         // Add code to update game state and display Game Over
 
